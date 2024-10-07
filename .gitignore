@@ -1,0 +1,29 @@
+/[L1]ibrary/
+/[Tt]enp/
+/[0o]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/Assets/AssetStoreTools*
+
+/.vs/
+
+ExportedОbj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+# Unity3D generated meta files
+*.pidb.meta
+#Unity3D Generated File OnCrash Reports
+sysinfo.txt
+# Builds\
+*.apk
+*.unitypackage
