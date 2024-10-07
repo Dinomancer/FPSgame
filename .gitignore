@@ -1,11 +1,11 @@
-/[L1]ibrary/
-/[Tt]enp/
-/[0o]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/Assets/AssetStoreTools*
+[L1]ibrary/
+[Tt]enp/
+[0o]bj/
+[Bb]uild/
+[Bb]uilds/
+Assets/AssetStoreTools*
 
-/.vs/
+.vs/
 
 ExportedОbj/
 .consulo/
@@ -26,4 +26,4 @@ ExportedОbj/
 sysinfo.txt
 # Builds\
 *.apk
-*.unitypackage
+*.unitypackage 
