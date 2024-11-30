@@ -37,7 +37,6 @@ public class PlayerController : NetworkBehaviour
             print("player is owner");
             playerCamera = GameObject.FindGameObjectsWithTag("Camera")[0];
             playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z);
-            playerCamera.transform.SetParent(transform);
         }
         else
         {
@@ -59,6 +58,8 @@ public class PlayerController : NetworkBehaviour
 
     void Update()
     {
+        //camera to player location
+        playerCamera.transform.position = transform.position;
         //toggle menu
         if (Input.GetKey("g"))
         {
