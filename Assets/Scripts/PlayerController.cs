@@ -5,6 +5,7 @@ using FishNet.Connection;
 using FishNet.Object;
 using FishNet.Example.Scened;
 
+//This is made by Bobsi Unity - Youtube
 public class PlayerController : NetworkBehaviour
 {
     [Header("Base setup")]
@@ -14,7 +15,6 @@ public class PlayerController : NetworkBehaviour
     public float gravity = 20.0f;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
-    public bool gUp = false;    //key G is down
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -25,30 +25,26 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField]
     private float cameraYOffset = 0.4f;
-    private GameObject playerCamera;
+    private Camera playerCamera;
 
 
     public override void OnStartClient()
     {
         base.OnStartClient();
-        print("player started");
         if (base.IsOwner)
         {
-            print("player is owner");
-            playerCamera = GameObject.FindGameObjectsWithTag("Camera")[0];
+            playerCamera = Camera.main;
             playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z);
+            playerCamera.transform.SetParent(transform);
         }
         else
         {
-            print("player not owner");
             gameObject.GetComponent<PlayerController>().enabled = false;
         }
     }
 
     void Start()
     {
-        print("player spawned");
-
         characterController = GetComponent<CharacterController>();
 
         // Lock cursor
@@ -58,34 +54,6 @@ public class PlayerController : NetworkBehaviour
 
     void Update()
     {
-        //camera to player location
-        playerCamera.transform.position = transform.position;
-        playerCamera.transform.rotation = transform.rotation;
-        //toggle menu
-        if (Input.GetKey("g"))
-        {
-            if (canMove && gUp)
-            {
-                print("unlocked");
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                canMove = false;
-                gUp = false;
-            }
-            else if (!canMove && gUp)
-            {
-                print("locked");
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-                canMove = true;
-                gUp = false;
-            }
-        }
-        else
-        {
-            gUp = true;
-        }
-
         bool isRunning = false;
 
         // Press Left Shift to run
@@ -122,7 +90,7 @@ public class PlayerController : NetworkBehaviour
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation *= Quaternion.Euler(rotationX, 0, 0);
+            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
     }

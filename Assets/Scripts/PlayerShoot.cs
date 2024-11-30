@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
+using MonoFN.Cecil;
 
 public class PlayerShoot : NetworkBehaviour
 {
@@ -34,11 +35,11 @@ public class PlayerShoot : NetworkBehaviour
 
     void Shoot()
     {
-        print("Player shot");
-        //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, Mathf.Infinity, LayerMask.NameToLayer("GameHittable")))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, Mathf.Infinity, LayerMask.NameToLayer("GameHittable")))
         {
 
         }
+        print("Player shot");
         StartCoroutine(CanShootUpdater());
     }
 
