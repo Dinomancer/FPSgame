@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
-using MonoFN.Cecil;
 
 public class PlayerShoot : NetworkBehaviour
 {

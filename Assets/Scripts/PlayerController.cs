@@ -5,7 +5,6 @@ using FishNet.Connection;
 using FishNet.Object;
 using FishNet.Example.Scened;
 
-//This is made by Bobsi Unity - Youtube
 public class PlayerController : NetworkBehaviour
 {
     [Header("Base setup")]
@@ -15,6 +14,7 @@ public class PlayerController : NetworkBehaviour
     public float gravity = 20.0f;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
+    public bool gUp = false;    //key G is down
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -33,7 +33,8 @@ public class PlayerController : NetworkBehaviour
         base.OnStartClient();
         if (base.IsOwner)
         {
-            playerCamera = Camera.main;
+            playerCamera = this.transform.Find("Camera").GetComponent<Camera>(); ;
+            print(playerCamera);
             playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z);
             playerCamera.transform.SetParent(transform);
         }
@@ -45,6 +46,8 @@ public class PlayerController : NetworkBehaviour
 
     void Start()
     {
+        print("player spawned");
+
         characterController = GetComponent<CharacterController>();
 
         // Lock cursor
@@ -54,6 +57,31 @@ public class PlayerController : NetworkBehaviour
 
     void Update()
     {
+        //toggle menu
+        if (Input.GetKey("g"))
+        {
+            if (canMove && gUp)
+            {
+                print("unlocked");
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                canMove = false;
+                gUp = false;
+            }
+            else if (!canMove && gUp)
+            {
+                print("locked");
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                canMove = true;
+                gUp = false;
+            }
+        }
+        else
+        {
+            gUp = true;
+        }
+
         bool isRunning = false;
 
         // Press Left Shift to run

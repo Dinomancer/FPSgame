@@ -3,6 +3,8 @@ using Steamworks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using FishNet.Object;
+using GameKit.Dependencies.Utilities;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -41,8 +43,9 @@ public class MainMenuManager : MonoBehaviour
     {
         instance.lobbyTitle.text = lobbyName;
         // temporarilly i set isHost to true
-        instance.startGameButton.gameObject.SetActive(true); //isHost
+        instance.startGameButton.gameObject.SetActive(isHost); //isHost
         //check isHost
+        Debug.Log(isHost);
         if (isHost)
             Debug.Log("Now, u r the Server");
         else Debug.Log("you are client");
@@ -72,5 +75,8 @@ public class MainMenuManager : MonoBehaviour
     {
         string[] scenesToClose = new string[] { "MenuSceneSteam" };
         BootstrapNetworkManager.ChangeNetworkScene("SampleScene", scenesToClose);
+
+
+        print("switched to samplescene");
     }
 }

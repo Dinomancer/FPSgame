@@ -90,8 +90,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-<<<<<<< HEAD
-=======
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.2.1",
       "depth": 0,
@@ -99,7 +97,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
->>>>>>> 381bd5c23b00e459cce3f78f4f204d374f715faa
     "com.unity.performance.profile-analyzer": {
       "version": "1.2.2",
       "depth": 1,

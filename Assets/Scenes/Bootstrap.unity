@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211a9f6ec51ddc14f908f5acc0cd0423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 2076159880144520305, guid: a686516889afe5e45a654f584979c982, type: 3}
+  _playerPrefab: {fileID: 5965797931393937745, guid: f8fecf66c5e2e354189eb25d296d1858, type: 3}
   _addToDefaultScene: 1
   Spawns: []
 --- !u!114 &5809517905961743667
@@ -418,7 +418,7 @@ MonoBehaviour:
   _serverBindAddress: 
   _port: 7770
   _maximumClients: 9001
-  _peerToPeer: 0
+  _peerToPeer: 1
   _clientAddress: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

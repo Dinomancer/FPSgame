@@ -57,8 +57,7 @@ public class BootstrapManager : MonoBehaviour
     private void OnLobbyEntered(LobbyEnter_t callback)
     {
         CurrentLobbyID = callback.m_ulSteamIDLobby;
-
-        MainMenuManager.LobbyEntered(SteamMatchmaking.GetLobbyData(new CSteamID(CurrentLobbyID), "name"), _networkManager.IsServer);
+        MainMenuManager.LobbyEntered(SteamMatchmaking.GetLobbyData(new CSteamID(CurrentLobbyID), "name"), _networkManager.IsServerStarted);
 
         _fishySteamworks.SetClientAddress(SteamMatchmaking.GetLobbyData(new CSteamID(CurrentLobbyID), "HostAddress"));
         _fishySteamworks.StartConnection(false);
@@ -79,7 +78,7 @@ public class BootstrapManager : MonoBehaviour
         CurrentLobbyID = 0;
 
         instance._fishySteamworks.StopConnection(false);
-        if (instance._networkManager.IsServer)
+        if (instance._networkManager.IsServerStarted)
             instance._fishySteamworks.StopConnection(true);
     }
 }
