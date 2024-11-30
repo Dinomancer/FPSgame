@@ -31,15 +31,17 @@ public class PlayerController : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
+        print("player started");
         if (base.IsOwner)
         {
+            print("player is owner");
             playerCamera = GameObject.FindGameObjectsWithTag("Camera")[0];
-            print(playerCamera);
             playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z);
             playerCamera.transform.SetParent(transform);
         }
         else
         {
+            print("player not owner");
             gameObject.GetComponent<PlayerController>().enabled = false;
         }
     }
