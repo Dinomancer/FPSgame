@@ -20,9 +20,7 @@ public class ObjectSpawner : NetworkBehaviour
     {
         
         if (Input.GetKeyDown(KeyCode.H) && isSpawned == false){
-            //spawnObject(objToSpawn, new Vector3(0,0,0)); //spawnpoint.GetComponent<Transform>().position
-            GameObject spawned = Instantiate(objToSpawn, new Vector3(0, 0, 0), Quaternion.identity);
-            ServerManager.Spawn(spawned, base.Owner);
+            spawnObject(objToSpawn, new Vector3(0,0,0)); //spawnpoint.GetComponent<Transform>().position
             isSpawned = true;
         }
     }
