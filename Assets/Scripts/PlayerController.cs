@@ -31,6 +31,10 @@ public class PlayerController : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
+        if (base.IsServerStarted)
+        {
+            PlayerManager.instance.players.Add(gameObject.GetInstanceID(), new PlayerManager.Player() { health = 100, playerObject = gameObject, connection = GetComponent<NetworkObject>().Owner });
+        }
         print("player started");
         if (base.IsOwner)
         {
@@ -115,6 +119,7 @@ public class PlayerController : NetworkBehaviour
         }
 
         // Move the controller
+        Physics.SyncTransforms();
         characterController.Move(moveDirection * Time.deltaTime);
 
         // Player and Camera rotation
