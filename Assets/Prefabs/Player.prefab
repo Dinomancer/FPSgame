@@ -237,15 +237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529da53fc814fab44b9bbfd9abf8f6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   _componentIndexCache: 255
   _addedNetworkObject: {fileID: 2076159880144520305}
   _networkObjectCache: {fileID: 0}
-=======
-  _componentIndexCache: 4
-  _addedNetworkObject: {fileID: 2076159880144520305}
-  _networkObjectCache: {fileID: 2076159880144520305}
->>>>>>> 4cf9b356cf58b472f51098295c5e0ac69a227a6b
   spawnPoints: []
 --- !u!114 &1456414306218417980
 MonoBehaviour:

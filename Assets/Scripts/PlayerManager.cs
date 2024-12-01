@@ -12,7 +12,17 @@ public class PlayerManager : NetworkBehaviour
 
 
     public static PlayerManager instance;
-    private void Awake()
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        if (!base.IsOwner)
+        {
+            GetComponent<PlayerManager>().enabled = false;
+        }
+    }
+
+        private void Awake()
     {
         instance = this;
     }

@@ -19,7 +19,7 @@ public class PlayerShoot : NetworkBehaviour
         base.OnStartClient();
 
         if (!base.IsOwner)
-            return;
+            GetComponent<PlayerShoot>().enabled = false;
 
         shootWait = new WaitForSeconds(fireRate);
     }
@@ -44,7 +44,7 @@ public class PlayerShoot : NetworkBehaviour
 
     void switchColor(string color)
     {
-        print("switched to color" + color);
+        print("switched to color " + color);
         this.color = color;
     }
     void Shoot()
