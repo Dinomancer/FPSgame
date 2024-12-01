@@ -42,16 +42,17 @@ public class PlayerShoot : NetworkBehaviour
         if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out RaycastHit hit, Mathf.Infinity, playerLayer))
         {
             print("Hit player");
-            HitPlayer(hit.transform.gameObject);
+            HitPlayer(hit.transform.parent.GetComponent<PlayerManager>(), GetComponent<PlayerManager>().damage.Value);
         }
 
         StartCoroutine(CanShootUpdater());
     }
 
     [ServerRpc(RequireOwnership = false)]
-    void HitPlayer(GameObject playerHit)
+    void HitPlayer(PlayerManager player, int damage)
     {
-        PlayerManager.instance.DamagePlayer(playerHit);
+        print(player);
+        player.DamagePlayer(damage);
     }
 
     IEnumerator CanShootUpdater()
