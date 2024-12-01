@@ -29,12 +29,20 @@ public class PlayerManager : NetworkBehaviour
     [SerializeField] List<Transform> spawnPoints = new List<Transform>();
 
     [ServerRpc(RequireOwnership = false)]
-    public void DamagePlayer(int damage)
+    public void DamagePlayer(int damage, string color)
     {
         if (!base.IsServerStarted)
             return;
-        GetComponent<PlayerManager>().health.Value -= damage;
-        print("Player health is " + GetComponent<PlayerManager>().health.Value);
+        if (GetComponent<PlayerShoot>().color == color)
+        {
+            GetComponent<PlayerManager>().health.Value -= damage;
+            print("damage is " + damage.ToString());
+            print("Player health is " + GetComponent<PlayerManager>().health.Value);
+        }
+        else
+        {
+            print("color mismatch, no damage");
+        }
 
         if (GetComponent<PlayerManager>().health.Value <= 0)
         {

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5100112771081522787}
   - component: {fileID: 4863676103315457747}
   - component: {fileID: 5908521579226590578}
+  - component: {fileID: 1456414306218417980}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -236,10 +237,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529da53fc814fab44b9bbfd9abf8f6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 2076159880144520305}
+  _networkObjectCache: {fileID: 0}
+=======
   _componentIndexCache: 4
   _addedNetworkObject: {fileID: 2076159880144520305}
   _networkObjectCache: {fileID: 2076159880144520305}
+>>>>>>> 4cf9b356cf58b472f51098295c5e0ac69a227a6b
   spawnPoints: []
+--- !u!114 &1456414306218417980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881300220399552027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e2444dec5aacd42bcea1a646524944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!1 &2554159136412161834
 GameObject:
   m_ObjectHideFlags: 0
