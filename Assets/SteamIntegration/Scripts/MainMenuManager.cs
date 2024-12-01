@@ -15,12 +15,31 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI lobbyTitle, lobbyIDText;
     [SerializeField] private Button startGameButton;
+    // Add a reference to the copy button
+    [SerializeField] private Button copyButton;
     private void Awake() => instance = this;
 
     private void Start()
     {
         OpenMainMenu();
+
+    // Add click listener for copy button if it exists
+        if (copyButton != null)
+        {
+            copyButton.onClick.AddListener(CopyLobbyIDToClipboard);
+        }
     }
+
+      // Add copy functionality
+    public void CopyLobbyIDToClipboard()
+    {
+        if (!string.IsNullOrEmpty(lobbyIDText.text))
+        {
+            GUIUtility.systemCopyBuffer = lobbyIDText.text;
+            Debug.Log("Lobby ID copied to clipboard: " + lobbyIDText.text);
+        }
+    }
+
 
     public void CreateLobby()
     {
