@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
 using FishNet.Connection;
+using FishNet.Object.Synchronizing;
 
 public class PlayerManager : NetworkBehaviour
 {
+    public readonly SyncVar<int> health = new SyncVar<int>(100);
+    public readonly SyncVar<int> damage = new SyncVar<int>(5);
+
+
     public static PlayerManager instance;
     private void Awake()
     {
@@ -15,28 +20,35 @@ public class PlayerManager : NetworkBehaviour
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
     [SerializeField] List<Transform> spawnPoints = new List<Transform>();
 
-    public void DamagePlayer(int playerID, int damage, int attackerID)
+    [ServerRpc(RequireOwnership = false)]
+    public void DamagePlayer(GameObject player)
     {
         if (!base.IsServerStarted)
             return;
-
-        players[playerID].health -= damage;
-        print("Player " + playerID.ToString() + " health is " + players[playerID].health);
-
-        if (players[playerID].health <= 0)
+        if (player == null)
         {
-            PlayerKilled(playerID, attackerID);
+            print("player is null");
+            return;
+        }
+        print(player.GetComponent<PlayerManager>());
+        player.GetComponent<PlayerManager>().health.Value -= damage.Value;
+        print("Player health is " + player.GetComponent<PlayerManager>().health.Value);
+
+        if (player.GetComponent<PlayerManager>().health.Value <= 0)
+        {
+            PlayerKilled(player);
         }
     }
 
-    void PlayerKilled(int playerID, int attackerID)
+    [ServerRpc(RequireOwnership = false)]
+    void PlayerKilled(GameObject player)
     {
-        print("Player " + playerID.ToString() + " was killed by " + attackerID.ToString());
-        players[playerID].deaths++;
-        players[playerID].health = 100;
-        players[attackerID].kills++;
+        print("Player was killed");
+        //players[playerID].deaths++;
+        player.GetComponent<PlayerManager>().health.Value = 100;
+        //players[attackerID].kills++;
 
-        RespawnPlayer(players[playerID].connection, players[playerID].playerObject, Random.Range(0, spawnPoints.Count));
+        //RespawnPlayer(players[playerID].connection, players[playerID].playerObject, Random.Range(0, spawnPoints.Count));
     }
 
     [TargetRpc]

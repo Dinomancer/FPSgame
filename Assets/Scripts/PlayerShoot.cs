@@ -5,7 +5,7 @@ using FishNet.Object;
 
 public class PlayerShoot : NetworkBehaviour
 {
-    [SerializeField] int damage = 5;
+    //[SerializeField] int damage = 5;
     [SerializeField] float fireRate = 0.3f;
     [SerializeField] KeyCode shootKey = KeyCode.Mouse0;
     [SerializeField] LayerMask playerLayer;
@@ -41,6 +41,7 @@ public class PlayerShoot : NetworkBehaviour
         Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), Color.green, 60);
         if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out RaycastHit hit, Mathf.Infinity, playerLayer))
         {
+            print("Hit player");
             HitPlayer(hit.transform.gameObject);
         }
 
@@ -50,7 +51,7 @@ public class PlayerShoot : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     void HitPlayer(GameObject playerHit)
     {
-        PlayerManager.instance.DamagePlayer(playerHit.GetInstanceID(), damage, gameObject.GetInstanceID());
+        PlayerManager.instance.DamagePlayer(playerHit);
     }
 
     IEnumerator CanShootUpdater()
