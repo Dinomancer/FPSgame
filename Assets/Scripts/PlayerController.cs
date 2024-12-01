@@ -14,6 +14,7 @@ public class PlayerController : NetworkBehaviour
     public float gravity = 20.0f;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
+
     public bool gUp = false;    //key G is down
 
     CharacterController characterController;
@@ -39,8 +40,7 @@ public class PlayerController : NetworkBehaviour
         if (base.IsOwner)
         {
             print("player is owner");
-            playerCamera = GameObject.FindGameObjectsWithTag("Camera")[0];
-            playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z);
+            playerCamera = GameObject.Find("Camera");
         }
         else
         {
@@ -62,9 +62,6 @@ public class PlayerController : NetworkBehaviour
 
     void Update()
     {
-        //camera to player location
-        playerCamera.transform.position = transform.position;
-        playerCamera.transform.rotation = transform.rotation;
         //toggle menu
         if (Input.GetKey("g"))
         {
@@ -127,8 +124,11 @@ public class PlayerController : NetworkBehaviour
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation *= Quaternion.Euler(rotationX, 0, 0);
+            //camDirection both vertical and horizontal, player direction only change horizontal
+            Quaternion camDirection = Quaternion.Euler(rotationX, 0, 0);
+            camDirection *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+            playerCamera.transform.localRotation = camDirection;
         }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
 
-//This is made by Bobsi Unity - Youtube
 public class PlayerShoot : NetworkBehaviour
 {
     [SerializeField] int damage = 5;
@@ -38,7 +37,9 @@ public class PlayerShoot : NetworkBehaviour
     void Shoot()
     {
         print("Player shot");
-        if (Physics.Raycast(GameObject.FindGameObjectsWithTag("Camera")[0].transform.forward, GameObject.FindGameObjectsWithTag("Camera")[0].transform.forward, out RaycastHit hit, Mathf.Infinity, playerLayer))
+        GameObject cam = GameObject.Find("Camera");
+        Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), Color.green, 60);
+        if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out RaycastHit hit, Mathf.Infinity, playerLayer))
         {
             HitPlayer(hit.transform.gameObject);
         }
