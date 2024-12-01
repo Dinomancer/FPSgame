@@ -17,6 +17,14 @@ public class PlayerManager : NetworkBehaviour
         instance = this;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            print(health.Value.ToString());
+        }
+    }
+
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
     [SerializeField] List<Transform> spawnPoints = new List<Transform>();
 
