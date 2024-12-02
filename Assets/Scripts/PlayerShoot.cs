@@ -13,10 +13,10 @@ public class PlayerShoot : NetworkBehaviour
     [SerializeField] LayerMask GameHittable;
     [SerializeField] private MeshRenderer[] playerMeshRenderers;
 
-    // Ê¹ÓÃ SyncVar<string> Ìæ´ú¾ÉµÄ SyncVarAttribute
+    // Ê¹ï¿½ï¿½ SyncVar<string> ï¿½ï¿½ï¿½ï¿½Éµï¿½ SyncVarAttribute
     private readonly SyncVar<string> currentColor = new SyncVar<string>("red");
 
-    // ¶¨ÒåÑÕÉ«Ó³Éä
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«Ó³ï¿½ï¿½
     private readonly Dictionary<string, Color> colorMap = new Dictionary<string, Color>()
     {
         { "red", new Color(0xE7/255f, 0x52/255f, 0x62/255f) },
@@ -40,10 +40,10 @@ public class PlayerShoot : NetworkBehaviour
 
         shootWait = new WaitForSeconds(fireRate);
 
-        // ÉèÖÃ SyncVar µÄ»Øµ÷
+        // ï¿½ï¿½ï¿½ï¿½ SyncVar ï¿½Ä»Øµï¿½
         currentColor.OnChange += OnColorChanged;
 
-        // ³õÊ¼»¯Ê±ÉèÖÃÑÕÉ«
+        // ï¿½ï¿½Ê¼ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«
         if (playerMeshRenderers != null)
         {
             UpdatePlayerColor(currentColor.Value);
@@ -88,7 +88,7 @@ public class PlayerShoot : NetworkBehaviour
         currentColor.Value = newColor;
     }
 
-    // ÐÞ¸Ä»Øµ÷Ç©ÃûÒÔÆ¥Åä SyncVar<T> µÄ OnChange Î¯ÍÐ
+    // ï¿½Þ¸Ä»Øµï¿½Ç©ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½ SyncVar<T> ï¿½ï¿½ OnChange Î¯ï¿½ï¿½
     private void OnColorChanged(string oldValue, string newValue, bool asServer)
     {
         UpdatePlayerColor(newValue);

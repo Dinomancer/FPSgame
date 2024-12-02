@@ -26,7 +26,7 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField]
     private float cameraYOffset = 0.4f;
-    private GameObject playerCamera;
+    private Transform playerCamera;
 
 
     public override void OnStartClient()
@@ -40,7 +40,7 @@ public class PlayerController : NetworkBehaviour
         if (base.IsOwner)
         {
             print("player is owner");
-            playerCamera = GameObject.Find("Camera");
+            playerCamera = gameObject.transform.GetChild(2);    //camera
         }
         else
         {
