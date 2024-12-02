@@ -11,13 +11,13 @@ public class PlayerCameraEnable : NetworkBehaviour
         base.OnStartClient();
         if (base.IsOwner)   //enable camera on client player, disable mesh and colliders
         {
-            GameObject cam = GameObject.Find("Camera");
+            Transform cam = gameObject.transform.GetChild(2);       //camera
             cam.GetComponent<Camera>().enabled = true;
             cam.GetComponent<AudioListener>().enabled = true;
-            GameObject body = GameObject.Find("PlayerCapsule");
+            Transform body = gameObject.transform.GetChild(0);     //player capsule
             body.GetComponent<CapsuleCollider>().enabled = false;
             body.GetComponent<MeshRenderer>().enabled = false;
-            GameObject head = GameObject.Find("PlayerCube");
+            Transform head = gameObject.transform.GetChild(1);     //player cube
             head.GetComponent<BoxCollider>().enabled = false;
             head.GetComponent<MeshRenderer>().enabled = false;
         }
