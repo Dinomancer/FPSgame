@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
 
+
 public class PlayerShoot : NetworkBehaviour
 {
     //[SerializeField] int damage = 5;
     [SerializeField] float fireRate = 0.3f;
     [SerializeField] KeyCode shootKey = KeyCode.Mouse0;
     [SerializeField] LayerMask GameHittable;
+
+
 
     bool canShoot = true;
     WaitForSeconds shootWait;
@@ -22,6 +25,8 @@ public class PlayerShoot : NetworkBehaviour
             GetComponent<PlayerShoot>().enabled = false;
 
         shootWait = new WaitForSeconds(fireRate);
+
+        
     }
 
     private void Update()
@@ -46,6 +51,13 @@ public class PlayerShoot : NetworkBehaviour
     {
         print("switched to color " + color);
         this.color = color;
+
+        // 通过UIManager更新UI
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.UpdateColorDisplay(color);
+        }
+
     }
     void Shoot()
     {
