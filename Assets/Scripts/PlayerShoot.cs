@@ -8,7 +8,7 @@ public class PlayerShoot : NetworkBehaviour
     //[SerializeField] int damage = 5;
     [SerializeField] float fireRate = 0.3f;
     [SerializeField] KeyCode shootKey = KeyCode.Mouse0;
-    [SerializeField] LayerMask playerLayer;
+    [SerializeField] LayerMask GameHittable;
 
     bool canShoot = true;
     WaitForSeconds shootWait;
@@ -33,11 +33,11 @@ public class PlayerShoot : NetworkBehaviour
 
         if (Input.GetKey(shootKey) && canShoot)
             Shoot();
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
             switchColor("red");
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
             switchColor("green");
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
             switchColor("blue");
 
     }
@@ -52,10 +52,17 @@ public class PlayerShoot : NetworkBehaviour
         print("Player shot");
         GameObject cam = GameObject.Find("Camera");
         Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), Color.green, 60);
-        if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out RaycastHit hit, Mathf.Infinity, playerLayer))
+        if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out RaycastHit hit, Mathf.Infinity, GameHittable))
         {
-            print("Hit player");
-            HitPlayer(hit.transform.parent.GetComponent<PlayerManager>(), GetComponent<PlayerManager>().damage.Value, color);
+            if(hit.transform.tag == "Player")
+            {
+                print("Hit player");
+                HitPlayer(hit.transform.parent.GetComponent<PlayerManager>(), GetComponent<PlayerManager>().damage.Value, color);
+            }else if (hit.transform.tag == "Enemy")
+            {
+                print("Hit enemy");
+                HitEnemy(hit.transform.GetComponent<EnemyManager>(), GetComponent<PlayerManager>().damage.Value, color);
+            }
         }
 
         StartCoroutine(CanShootUpdater());
@@ -64,8 +71,13 @@ public class PlayerShoot : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     void HitPlayer(PlayerManager player, int damage, string color)
     {
-        print(player);
         player.DamagePlayer(damage, color);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void HitEnemy(EnemyManager enemy, int damage, string color)
+    {
+        enemy.DamageEnemy(damage, color);
     }
 
     IEnumerator CanShootUpdater()

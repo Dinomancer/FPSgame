@@ -16,8 +16,7 @@ GameObject:
   - component: {fileID: 5100112771081522787}
   - component: {fileID: 4863676103315457747}
   - component: {fileID: 5908521579226590578}
-  - component: {fileID: 1456414306218417980}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -109,9 +108,10 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 2076159880144520305}
   fireRate: 0.3
   shootKey: 323
-  playerLayer:
+  GameHittable:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 64
+  color: red
 --- !u!114 &2076159880144520305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,24 +237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529da53fc814fab44b9bbfd9abf8f6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 2076159880144520305}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 2076159880144520305}
   spawnPoints: []
---- !u!114 &1456414306218417980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881300220399552027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43e2444dec5aacd42bcea1a646524944, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 0}
-  healthText: {fileID: 0}
 --- !u!1 &2554159136412161834
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +252,7 @@ GameObject:
   - component: {fileID: 6455051167426873729}
   - component: {fileID: 1378739436675285631}
   - component: {fileID: 479085738011407268}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,9 +347,9 @@ GameObject:
   - component: {fileID: 1099683207970131315}
   - component: {fileID: 1769573226013577826}
   - component: {fileID: 3559343064654945766}
-  m_Layer: 7
-  m_Name: Capsule
-  m_TagString: Untagged
+  m_Layer: 6
+  m_Name: PlayerCapsule
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -534,9 +520,9 @@ GameObject:
   - component: {fileID: 6623386482179125008}
   - component: {fileID: 2951025149097506699}
   - component: {fileID: 8951775772808046308}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Layer: 6
+  m_Name: PlayerCube
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

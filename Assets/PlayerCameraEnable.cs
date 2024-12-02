@@ -14,10 +14,10 @@ public class PlayerCameraEnable : NetworkBehaviour
             GameObject cam = GameObject.Find("Camera");
             cam.GetComponent<Camera>().enabled = true;
             cam.GetComponent<AudioListener>().enabled = true;
-            GameObject body = GameObject.Find("Capsule");
+            GameObject body = GameObject.Find("PlayerCapsule");
             body.GetComponent<CapsuleCollider>().enabled = false;
             body.GetComponent<MeshRenderer>().enabled = false;
-            GameObject head = GameObject.Find("Cube");
+            GameObject head = GameObject.Find("PlayerCube");
             head.GetComponent<BoxCollider>().enabled = false;
             head.GetComponent<MeshRenderer>().enabled = false;
         }
