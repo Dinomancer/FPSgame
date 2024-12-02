@@ -10,6 +10,24 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text colorDisplayText;
     [SerializeField] private RawImage colorIndicatorImage;
 
+    private readonly Color redColor = new Color(
+        0xE7 / 255f,  // 231/255
+        0x52 / 255f,  // 82/255
+        0x62 / 255f   // 98/255
+    );
+
+    private readonly Color greenColor = new Color(
+        0x4B / 255f,  // 75/255
+        0xD9 / 255f,  // 217/255
+        0x54 / 255f   // 84/255
+    );
+
+    private readonly Color blueColor = new Color(
+        0x4D / 255f,  // 77/255
+        0x5D / 255f,  // 93/255
+        0xDB / 255f   // 219/255
+    );
+
     private void Awake()
     {
         if (instance == null)
@@ -31,16 +49,15 @@ public class UIManager : MonoBehaviour
             switch (color.ToLower())
             {
                 case "red":
-                    newColor = Color.red;
+                    colorIndicatorImage.color = redColor;
                     break;
                 case "green":
-                    newColor = Color.green;
+                    colorIndicatorImage.color = greenColor;
                     break;
                 case "blue":
-                    newColor = Color.blue;
+                    colorIndicatorImage.color = blueColor;
                     break;
             }
-            colorIndicatorImage.color = newColor;
         }
     }
 }
