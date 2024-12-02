@@ -28,6 +28,7 @@ public class EnemyManager : NetworkBehaviour
         }
     }
 
+    [ObserversRpc]
     public void Despawn()
     {
         gameObject.SetActive(false);
