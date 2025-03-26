@@ -13,6 +13,11 @@ public class PlayerShoot : NetworkBehaviour
     [SerializeField] LayerMask GameHittable;
     [SerializeField] private MeshRenderer[] playerMeshRenderers;
 
+    // 添加激光轨迹相关变量
+    [SerializeField] Transform shootPoint; // 射击点
+    [SerializeField] GameObject laserTrailPrefab; // 激光轨迹预制体
+    [SerializeField] float laserDuration = 0.2f; // 激光持续时间
+
     // ʹ�� SyncVar<string> ����ɵ� SyncVarAttribute
     private readonly SyncVar<string> currentColor = new SyncVar<string>("red");
 
@@ -47,6 +52,13 @@ public class PlayerShoot : NetworkBehaviour
         if (playerMeshRenderers != null)
         {
             UpdatePlayerColor(currentColor.Value);
+        }
+
+        // 检查射击点
+        if (shootPoint == null)
+        {
+            Debug.LogWarning("Shoot point not assigned. Using player position instead.");
+            shootPoint = transform;
         }
 
     }
@@ -145,6 +157,18 @@ public class PlayerShoot : NetworkBehaviour
     {
         print("Player shot");
         GameObject cam = GameObject.Find("Camera");
+
+        // 获取射击起点和方向
+        Vector3 shootPosition = shootPoint != null ? shootPoint.position : cam.transform.position;
+        Vector3 shootDirection = cam.transform.TransformDirection(Vector3.forward);
+
+        // 创建激光轨迹
+        CreateLaserTrail(shootPosition, shootDirection);
+
+
+
+        Debug.DrawRay(cam.transform.position, shootDirection, Color.green, 60);
+
         Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), Color.green, 60);
         if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out RaycastHit hit, Mathf.Infinity, GameHittable))
         {
@@ -160,6 +184,63 @@ public class PlayerShoot : NetworkBehaviour
         }
 
         StartCoroutine(CanShootUpdater());
+    }
+
+    // 添加创建激光轨迹的方法
+    void CreateLaserTrail(Vector3 startPos, Vector3 direction)
+    {
+        if (!IsOwner) return; // 只有本地玩家才能创建视觉效果
+
+        RaycastHit hit;
+        Vector3 endPos;
+
+        // 确定激光轨迹的终点
+        if (Physics.Raycast(startPos, direction, out hit, Mathf.Infinity, GameHittable))
+        {
+            endPos = hit.point;
+        }
+        else
+        {
+            // 如果没有击中任何物体，设置一个最大距离
+            endPos = startPos + direction * 100f;
+        }
+
+        // 在本地创建激光轨迹
+        CreateLaserTrailServerRpc(startPos, endPos, currentColor.Value);
+    }
+
+    [ServerRpc]
+    void CreateLaserTrailServerRpc(Vector3 startPos, Vector3 endPos, string colorName)
+    {
+        // 在服务器上创建激光轨迹，然后通过RPC广播给所有客户端
+        CreateLaserTrailClientRpc(startPos, endPos, colorName);
+    }
+
+    [ServerRpc] // client?
+    void CreateLaserTrailClientRpc(Vector3 startPos, Vector3 endPos, string colorName)
+    {
+        // 在所有客户端上创建激光轨迹
+        GameObject laserTrail = Instantiate(laserTrailPrefab, Vector3.zero, Quaternion.identity);
+        LineRenderer lineRenderer = laserTrail.GetComponent<LineRenderer>();
+
+        if (lineRenderer != null)
+        {
+            // 设置线的位置
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPosition(0, startPos);
+            lineRenderer.SetPosition(1, endPos);
+
+            // 设置颜色
+            if (colorMap.ContainsKey(colorName))
+            {
+                Color trailColor = colorMap[colorName];
+                lineRenderer.startColor = trailColor;
+                lineRenderer.endColor = trailColor;
+            }
+
+            // 一段时间后销毁激光轨迹
+            Destroy(laserTrail, laserDuration);
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]

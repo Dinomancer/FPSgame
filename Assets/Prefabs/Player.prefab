@@ -117,6 +117,9 @@ MonoBehaviour:
     m_Bits: 64
   playerMeshRenderers:
   - {fileID: 1552209081427165441}
+  shootPoint: {fileID: 0}
+  laserTrailPrefab: {fileID: 7342652397881851314}
+  laserDuration: 0.15
 --- !u!114 &2076159880144520305
 MonoBehaviour:
   m_ObjectHideFlags: 0
