@@ -37,10 +37,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2192906175603977816}
   - {fileID: 9188872500304719959}
   - {fileID: 3160153307599204525}
   - {fileID: 6455051167426873729}
+  - {fileID: 2192906175603977816}
   - {fileID: 3444035516566241807}
   - {fileID: 8565080350170918351}
   m_Father: {fileID: 0}
@@ -331,7 +331,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2554159136412161834}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
