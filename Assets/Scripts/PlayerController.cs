@@ -28,6 +28,8 @@ public class PlayerController : NetworkBehaviour
     private float cameraYOffset = 0.4f;
     private Transform playerCamera;
 
+    public GameObject playerArm;
+
 
     public override void OnStartClient()
     {
@@ -129,6 +131,7 @@ public class PlayerController : NetworkBehaviour
             camDirection *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
             playerCamera.transform.localRotation = camDirection;
+            playerArm.transform.localRotation = camDirection;
         }
     }
 }

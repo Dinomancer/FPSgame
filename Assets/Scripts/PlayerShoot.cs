@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using GameKit.Dependencies.Utilities;
+using Unity.VisualScripting;
 
 
 public class PlayerShoot : NetworkBehaviour
@@ -14,12 +16,21 @@ public class PlayerShoot : NetworkBehaviour
     [SerializeField] private MeshRenderer[] playerMeshRenderers;
 
     // 添加激光轨迹相关变量
-    [SerializeField] Transform shootPoint; // 射击点
-    [SerializeField] GameObject laserTrailPrefab; // 激光轨迹预制体
+    [SerializeField] public Transform shootPoint; // 射击点
+    [SerializeField] public GameObject laserTrailRed; // 激光轨迹预制体
+    [SerializeField] public GameObject laserTrailGreen;
+    [SerializeField] public GameObject laserTrailBlue;
     [SerializeField] float laserDuration = 0.2f; // 激光持续时间
 
     // ʹ�� SyncVar<string> ����ɵ� SyncVarAttribute
     private readonly SyncVar<string> currentColor = new SyncVar<string>("red");
+
+    public Material red;
+    public Material green;
+    public Material blue;
+
+    public Object playerBody;
+    public GameObject playerArmCube;
 
     // ������ɫӳ��
     private readonly Dictionary<string, Color> colorMap = new Dictionary<string, Color>()
@@ -98,6 +109,21 @@ public class PlayerShoot : NetworkBehaviour
     private void SwitchColorServerRpc(string newColor)
     {
         currentColor.Value = newColor;
+        //change color for arm and body
+        if (newColor == "red")
+        {
+            playerArmCube.GetComponent<MeshRenderer>().material = red;
+            playerBody.GetComponent<MeshRenderer>().material = red;
+        }else if (newColor == "blue")
+        {
+            playerArmCube.GetComponent<MeshRenderer>().material = blue;
+            playerBody.GetComponent<MeshRenderer>().material = blue;
+        }
+        else if (newColor == "green")
+        {
+            playerArmCube.GetComponent<MeshRenderer>().material = green;
+            playerBody.GetComponent<MeshRenderer>().material = green;
+        }
     }
 
     // �޸Ļص�ǩ����ƥ�� SyncVar<T> �� OnChange ί��
@@ -159,17 +185,17 @@ public class PlayerShoot : NetworkBehaviour
         GameObject cam = GameObject.Find("Camera");
 
         // 获取射击起点和方向
-        Vector3 shootPosition = shootPoint != null ? shootPoint.position : cam.transform.position;
+        Vector3 shootPosition = shootPoint.position;        // : cam.transform.position
         Vector3 shootDirection = cam.transform.TransformDirection(Vector3.forward);
 
         // 创建激光轨迹
-        CreateLaserTrail(shootPosition, shootDirection);
+        CreateLaserTrail(cam.transform.position, cam.transform.TransformDirection(Vector3.forward));
 
 
 
-        Debug.DrawRay(cam.transform.position, shootDirection, Color.green, 60);
+        //Debug.DrawRay(cam.transform.position, shootDirection, Color.green, 60);
 
-        Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), Color.green, 60);
+        //Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), Color.green, 60);
         if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out RaycastHit hit, Mathf.Infinity, GameHittable))
         {
             if(hit.transform.tag == "Player")
@@ -181,6 +207,7 @@ public class PlayerShoot : NetworkBehaviour
                 print("Hit enemy");
                 HitEnemy(hit.transform.GetComponent<EnemyManager>(), GetComponent<PlayerManager>().damage.Value, color);
             }
+            //render 
         }
 
         StartCoroutine(CanShootUpdater());
@@ -206,7 +233,7 @@ public class PlayerShoot : NetworkBehaviour
         }
 
         // 在本地创建激光轨迹
-        CreateLaserTrailServerRpc(startPos, endPos, currentColor.Value);
+        CreateLaserTrailServerRpc(shootPoint.position, endPos, currentColor.Value);
     }
 
     [ServerRpc]
@@ -220,7 +247,22 @@ public class PlayerShoot : NetworkBehaviour
     void CreateLaserTrailClientRpc(Vector3 startPos, Vector3 endPos, string colorName)
     {
         // 在所有客户端上创建激光轨迹
-        GameObject laserTrail = Instantiate(laserTrailPrefab, Vector3.zero, Quaternion.identity);
+        GameObject laserTrail;
+        if(colorName == "red")
+        {
+            laserTrail = Instantiate(laserTrailRed, Vector3.zero, Quaternion.identity);
+        }
+        else if (colorName == "blue")
+        {
+            laserTrail = Instantiate(laserTrailBlue, Vector3.zero, Quaternion.identity);
+        }else if (colorName == "green")
+        {
+            laserTrail = Instantiate(laserTrailGreen, Vector3.zero, Quaternion.identity);
+        }
+        else
+        {
+            laserTrail = Instantiate(laserTrailRed, Vector3.zero, Quaternion.identity);
+        }
         LineRenderer lineRenderer = laserTrail.GetComponent<LineRenderer>();
 
         if (lineRenderer != null)
