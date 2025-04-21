@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 
@@ -10,7 +11,7 @@ public class TestSync : NetworkBehaviour
     private readonly SyncVar<float> health = new SyncVar<float>(100);
 
     // Update is called once per frame
-    [ServerRPC]
+    [ServerRpc]
     private void Update()
     {
         if (!base.IsOwner)
