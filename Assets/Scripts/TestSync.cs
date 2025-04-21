@@ -15,7 +15,6 @@ public class TestSync : NetworkBehaviour
     {
         if (!base.IsOwner)
         {
-            print("not owner");
             return;
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
