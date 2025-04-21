@@ -13,10 +13,6 @@ public class TestSync : NetworkBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (!base.IsOwner)
-        {
-            return;
-        }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             setHealth(health.Value - 1);
