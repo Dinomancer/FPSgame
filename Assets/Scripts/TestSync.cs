@@ -10,13 +10,12 @@ public class TestSync : NetworkBehaviour
     private readonly SyncVar<float> health = new SyncVar<float>(100);
 
     // Update is called once per frame
+    [ServerRPC]
     private void Update()
     {
         if (!base.IsOwner)
         {
-            print("not owner");
             return;
-
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
