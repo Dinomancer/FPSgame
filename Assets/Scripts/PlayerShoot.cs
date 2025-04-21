@@ -242,9 +242,9 @@ public class PlayerShoot : NetworkBehaviour
         // 在服务器上创建激光轨迹，然后通过RPC广播给所有客户端
         CreateLaserTrailClientRpc(startPos, endPos, colorName);
     }
-
-    [ServerRpc(RequireOwnership = false)] // client?
-    void CreateLaserTrailClientRpc(Vector3 startPos, Vector3 endPos, string colorName)
+        
+    [ObserversRpc] // client?
+    private void CreateLaserTrailClientRpc(Vector3 startPos, Vector3 endPos, string colorName)
     {
         // 在所有客户端上创建激光轨迹
         GameObject laserTrail;

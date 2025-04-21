@@ -8,6 +8,7 @@ public class PlayerCameraEnable : NetworkBehaviour
     public GameObject cam;
     public GameObject playerBody;
     public GameObject playerCube;
+
     // Start is called before the first frame update
     public override void OnStartClient()
     {
