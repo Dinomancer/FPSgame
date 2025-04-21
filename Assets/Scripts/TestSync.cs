@@ -8,21 +8,27 @@ using FishNet.Object.Synchronizing;
 public class TestSync : NetworkBehaviour
 {
     // Start is called before the first frame update
-    private readonly SyncVar<float> health = new SyncVar<float>(100);
+    public readonly SyncVar<float> health = new SyncVar<float>(100);
 
     // Update is called once per frame
-    [ServerRpc]
     private void Update()
     {
         if (!base.IsOwner)
         {
+            print("not owner");
             return;
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            health.Value = health.Value - 1;
+            setHealth(health.Value - 1);
             print("health changed to " + health.Value);
         }
 
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void setHealth(float health)
+    {
+        this.health.Value = health;
     }
 }

@@ -105,7 +105,7 @@ public class PlayerShoot : NetworkBehaviour
 
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void SwitchColorServerRpc(string newColor)
     {
         currentColor.Value = newColor;
@@ -236,14 +236,14 @@ public class PlayerShoot : NetworkBehaviour
         CreateLaserTrailServerRpc(shootPoint.position, endPos, currentColor.Value);
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     void CreateLaserTrailServerRpc(Vector3 startPos, Vector3 endPos, string colorName)
     {
         // 在服务器上创建激光轨迹，然后通过RPC广播给所有客户端
         CreateLaserTrailClientRpc(startPos, endPos, colorName);
     }
 
-    [ServerRpc] // client?
+    [ServerRpc(RequireOwnership = false)] // client?
     void CreateLaserTrailClientRpc(Vector3 startPos, Vector3 endPos, string colorName)
     {
         // 在所有客户端上创建激光轨迹
