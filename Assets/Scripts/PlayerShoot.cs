@@ -108,13 +108,20 @@ public class PlayerShoot : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void SwitchColorServerRpc(string newColor)
     {
+        SwitchColorClientRpc(newColor);
+    }
+
+    [ObserversRpc]
+    private void SwitchColorClientRpc(string newColor)
+    {
         currentColor.Value = newColor;
         //change color for arm and body
         if (newColor == "red")
         {
             playerArmCube.GetComponent<MeshRenderer>().material = red;
             playerBody.GetComponent<MeshRenderer>().material = red;
-        }else if (newColor == "blue")
+        }
+        else if (newColor == "blue")
         {
             playerArmCube.GetComponent<MeshRenderer>().material = blue;
             playerBody.GetComponent<MeshRenderer>().material = blue;
