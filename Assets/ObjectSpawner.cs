@@ -20,7 +20,7 @@ public class ObjectSpawner : NetworkBehaviour
     {
         
         if (Input.GetKeyDown(KeyCode.H) && isSpawned == false && base.IsOwner){
-            spawnObject(objToSpawn, new Vector3(0,0,0)); //spawnpoint.GetComponent<Transform>().position
+            spawnObject(objToSpawn, new Vector3(0,1,0)); //spawnpoint.GetComponent<Transform>().position
             isSpawned = true;
         }
     }
