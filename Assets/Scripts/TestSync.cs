@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 
-public class TestSync : NetworkBehaviour
+public class TestSync:NetworkBehaviour
 {
     // Start is called before the first frame update
     public readonly SyncVar<float> health = new SyncVar<float>(100);

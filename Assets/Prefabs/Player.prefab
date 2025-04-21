@@ -241,6 +241,9 @@ MonoBehaviour:
   _componentIndexCache: 3
   _addedNetworkObject: {fileID: 2076159880144520305}
   _networkObjectCache: {fileID: 2076159880144520305}
+  cam: {fileID: 2554159136412161834}
+  playerBody: {fileID: 3210303487804635522}
+  playerCube: {fileID: 6999044041734098517}
 --- !u!114 &5908521579226590578
 MonoBehaviour:
   m_ObjectHideFlags: 0
