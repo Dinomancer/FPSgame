@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FishNet.Object;
+using FishNet.Object.Synchronizing;
 
 public class TestSync : NetworkBehaviour
 {
@@ -18,8 +20,8 @@ public class TestSync : NetworkBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            health.value = health.value - 1;
-            print("health changed to " + health.value);
+            health.Value = health.Value - 1;
+            print("health changed to " + health.Value);
         }
 
     }

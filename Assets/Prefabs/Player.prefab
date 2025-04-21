@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5908521579226590578}
   - component: {fileID: -2161876025151065136}
   - component: {fileID: 8242658432844648906}
+  - component: {fileID: 1535682686165859773}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -322,6 +323,21 @@ MonoBehaviour:
   UnityEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1535682686165859773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881300220399552027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e498fe25bf7a02499531dc80bc4e6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 2076159880144520305}
+  _networkObjectCache: {fileID: 0}
 --- !u!1 &2554159136412161834
 GameObject:
   m_ObjectHideFlags: 0
