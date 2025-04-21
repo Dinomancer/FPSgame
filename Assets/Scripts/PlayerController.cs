@@ -26,7 +26,7 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField]
     private float cameraYOffset = 0.4f;
-    private Transform playerCamera;
+    public Transform playerCamera;
 
     public GameObject playerArm;
 

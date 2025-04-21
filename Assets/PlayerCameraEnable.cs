@@ -11,6 +11,7 @@ public class PlayerCameraEnable : NetworkBehaviour
         base.OnStartClient();
         if (base.IsOwner)   //enable camera on client player, disable mesh and colliders
         {
+            print("player spawned, enabling camera");
             Transform cam = gameObject.transform.GetChild(2);       //camera
             cam.GetComponent<Camera>().enabled = true;
             cam.GetComponent<AudioListener>().enabled = true;
