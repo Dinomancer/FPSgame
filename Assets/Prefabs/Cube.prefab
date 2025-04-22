@@ -414,7 +414,7 @@ MonoBehaviour:
   yellowSlider: {fileID: 4027697922887557860}
   whiteSlider: {fileID: 250260032723991226}
   gameBase: {fileID: 0}
-  speed: 1
+  speed: 5
 --- !u!114 &-8882543144334295272
 MonoBehaviour:
   m_ObjectHideFlags: 0

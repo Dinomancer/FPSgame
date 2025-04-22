@@ -28,6 +28,8 @@ public class EnemyManager : NetworkBehaviour
     public GameObject gameBase;
     public float speed = 1f;
 
+    private bool canCollide = true;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -107,6 +109,16 @@ public class EnemyManager : NetworkBehaviour
         this.gameBase = gameBase;
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        // Called when this GameObject starts colliding with another
+        print("Collision started with: " + collision.gameObject.name);
+        if (collision.gameObject.name == "Base")
+        {
+            //collision.gameObject.GetComponent<>
+        }
+    }
+
     public void Update() {
         updateHealthBar();
         regenHealth();
@@ -121,5 +133,18 @@ public class EnemyManager : NetworkBehaviour
             transform.position = Vector3.MoveTowards(transform.position, gameBase.transform.position, speed * Time.deltaTime);
 
         }
+
+        //check for collide with base
+        if(canCollide) {
+            Collider colA = this.GetComponent<Collider>();
+            Collider colB = this.gameBase.transform.GetChild(0).GetComponent<Collider>();
+            if (colA != null && colB != null && colA.bounds.Intersects(colB.bounds))
+            {
+                print("Collision");
+                this.gameBase.transform.GetChild(0).GetComponent<BaseHealth>().DamageBase(10);
+                canCollide = false;
+                Despawn();
+            }
+        }   
     }
 }

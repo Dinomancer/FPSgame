@@ -1245,6 +1245,7 @@ GameObject:
   - component: {fileID: 8229434961147491613}
   - component: {fileID: 1250789491159658452}
   - component: {fileID: 4539919168266924565}
+  - component: {fileID: 8698242069117238089}
   m_Layer: 0
   m_Name: BaseTriangle
   m_TagString: Untagged
@@ -1605,6 +1606,32 @@ MonoBehaviour:
     Position: {x: 0, y: 0, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 0}
     LocalScale: {x: 0, y: 0, z: 0}
+--- !u!114 &8698242069117238089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7478054623616397835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e68fee42ee2ba146bd19d7e4bc4fb5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 4539919168266924565}
+  _networkObjectCache: {fileID: 0}
+  maxHealth: 100
+  startingRedHealth: 100
+  startingGreenHealth: 100
+  startingBlueHealth: 100
+  redSlider: {fileID: 4762626776358456739}
+  greenSlider: {fileID: 7039165167135104927}
+  blueSlider: {fileID: 3242315595673847466}
+  magentaSlider: {fileID: 3426433957259207459}
+  cyanSlider: {fileID: 2504122167813349139}
+  yellowSlider: {fileID: 4198002941174977689}
+  whiteSlider: {fileID: 7176143515779130764}
 --- !u!1 &7514917168890433929
 GameObject:
   m_ObjectHideFlags: 0
