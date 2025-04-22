@@ -117,7 +117,8 @@ public class EnemyManager : NetworkBehaviour
         }
         else
         {
-            print("base is not set");
+            this.gameBase = GameObject.Find("Base");
+            transform.position = Vector3.MoveTowards(transform.position, gameBase.transform.position, speed * Time.deltaTime);
 
         }
     }

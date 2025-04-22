@@ -173,6 +173,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &250682283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 250682285}
+  - component: {fileID: 250682284}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &250682284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250682283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714290edac1a0444ca251286be95de92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnpoints:
+  - {fileID: 486524522}
+--- !u!4 &250682285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250682283}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18.836033, y: -7.221458, z: -17.556837}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &292710124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -253,6 +299,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1341049399}
   m_SourcePrefab: {fileID: 100100000, guid: 0b650fca685f2eb41a86538aa883e4c1, type: 3}
+--- !u!1 &486524522 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3728704811400189831, guid: 78823ca5a84cdd94b8d2e2ea299c7adc, type: 3}
+  m_PrefabInstance: {fileID: 811142710565337264}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &567073228
 Mesh:
   m_ObjectHideFlags: 0
@@ -1715,7 +1766,7 @@ PrefabInstance:
       objectReference: {fileID: 567073228}
     - target: {fileID: 56931037862000450, guid: e293347916a7abc49a32bdf16af784ef, type: 3}
       propertyPath: m_VersionIndex
-      value: 610
+      value: 613
       objectReference: {fileID: 0}
     - target: {fileID: 1145516939461941974, guid: e293347916a7abc49a32bdf16af784ef, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1849,3 +1900,4 @@ SceneRoots:
   - {fileID: 231099615}
   - {fileID: 6302082735375406817}
   - {fileID: 811142710565337264}
+  - {fileID: 250682285}
