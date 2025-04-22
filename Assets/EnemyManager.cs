@@ -6,6 +6,7 @@ using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using static UnityEngine.GraphicsBuffer;
 using Unity.VisualScripting;
+using FishNet;
 
 public class EnemyManager : NetworkBehaviour
 {
@@ -141,7 +142,7 @@ public class EnemyManager : NetworkBehaviour
             if (colA != null && colB != null && colA.bounds.Intersects(colB.bounds))
             {
                 print("Collision");
-                this.gameBase.transform.GetChild(0).GetComponent<BaseHealth>().DamageBase(10);
+                if (InstanceFinder.IsHost) this.gameBase.transform.GetChild(0).GetComponent<BaseHealth>().DamageBase(10);
                 canCollide = false;
                 Despawn();
             }
