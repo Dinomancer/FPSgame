@@ -24,11 +24,27 @@ public class WaveManager : MonoBehaviour
             spawnpoints[2].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
             spawnpoints[10].GetComponent<EnemySpawner>().spawnEnemyServer("greenEnemy");
             spawnpoints[14].GetComponent<EnemySpawner>().spawnEnemyServer("blueEnemy");
-            StartCoroutine(SpawnWave2(6f));
+            StartCoroutine(SpawnWave2(15f));
         }
     }
 
     IEnumerator SpawnWave2(float time)
+    {
+        yield return new WaitForSeconds(time);
+        spawnpoints[2].GetComponent<EnemySpawner>().spawnEnemyServer("magentaEnemy");
+        spawnpoints[10].GetComponent<EnemySpawner>().spawnEnemyServer("yellowEnemy");
+        spawnpoints[14].GetComponent<EnemySpawner>().spawnEnemyServer("cyanEnemy");
+        StartCoroutine(SpawnWave3(15f));
+    }
+    IEnumerator SpawnWave3(float time)
+    {
+        yield return new WaitForSeconds(time);
+        spawnpoints[2].GetComponent<EnemySpawner>().spawnEnemyServer("whiteEnemy");
+        spawnpoints[10].GetComponent<EnemySpawner>().spawnEnemyServer("whiteEnemy");
+        spawnpoints[14].GetComponent<EnemySpawner>().spawnEnemyServer("whiteEnemy");
+        StartCoroutine(SpawnWave4(15f));
+    }
+    IEnumerator SpawnWave4(float time)
     {
         yield return new WaitForSeconds(time);
         spawnpoints[0].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
@@ -40,7 +56,22 @@ public class WaveManager : MonoBehaviour
         spawnpoints[16].GetComponent<EnemySpawner>().spawnEnemyServer("blueEnemy");
         spawnpoints[20].GetComponent<EnemySpawner>().spawnEnemyServer("blueEnemy");
         spawnpoints[12].GetComponent<EnemySpawner>().spawnEnemyServer("magentaEnemy");
-
-
+        StartCoroutine(SpawnWave5(15f));
+    }
+    IEnumerator SpawnWave5(float time)
+    {
+        yield return new WaitForSeconds(time);
+        spawnpoints[7].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
+        spawnpoints[8].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
+        spawnpoints[23].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
+        spawnpoints[24].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
+        spawnpoints[12].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
+        spawnpoints[15].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
+        spawnpoints[16].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
+        spawnpoints[19].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
+        spawnpoints[18].GetComponent<EnemySpawner>().spawnEnemyServer("yellowEnemy");
+        spawnpoints[17].GetComponent<EnemySpawner>().spawnEnemyServer("yellowEnemy");
+        spawnpoints[14].GetComponent<EnemySpawner>().spawnEnemyServer("yellowEnemy");
+        spawnpoints[13].GetComponent<EnemySpawner>().spawnEnemyServer("yellowEnemy");
     }
 }
