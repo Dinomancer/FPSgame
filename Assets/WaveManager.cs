@@ -63,15 +63,15 @@ public class WaveManager : MonoBehaviour
         yield return new WaitForSeconds(time);
         spawnpoints[7].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
         spawnpoints[8].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
+        spawnpoints[22].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
         spawnpoints[23].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
-        spawnpoints[24].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
-        spawnpoints[12].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
-        spawnpoints[15].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
+        spawnpoints[11].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
+        spawnpoints[14].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
         spawnpoints[16].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
         spawnpoints[19].GetComponent<EnemySpawner>().spawnEnemyServer("redEnemy");
         spawnpoints[18].GetComponent<EnemySpawner>().spawnEnemyServer("yellowEnemy");
         spawnpoints[17].GetComponent<EnemySpawner>().spawnEnemyServer("yellowEnemy");
-        spawnpoints[14].GetComponent<EnemySpawner>().spawnEnemyServer("yellowEnemy");
+        spawnpoints[12].GetComponent<EnemySpawner>().spawnEnemyServer("yellowEnemy");
         spawnpoints[13].GetComponent<EnemySpawner>().spawnEnemyServer("yellowEnemy");
     }
 }
