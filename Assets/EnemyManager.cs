@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using static UnityEngine.GraphicsBuffer;
+using Unity.VisualScripting;
 
 public class EnemyManager : NetworkBehaviour
 {
@@ -23,8 +25,17 @@ public class EnemyManager : NetworkBehaviour
     public Slider yellowSlider;
     public Slider whiteSlider;
 
+    public GameObject gameBase;
+    public float speed = 1f;
+
     // Start is called before the first frame update
     public void Start()
+    {
+        redHealth.Value = startingRedHealth;
+        blueHealth.Value = startingBlueHealth;
+        greenHealth.Value = startingGreenHealth;
+    }
+    public void init()
     {
         redHealth.Value = startingRedHealth;
         blueHealth.Value = startingBlueHealth;
@@ -91,8 +102,23 @@ public class EnemyManager : NetworkBehaviour
 
     }
 
+    public void setGameBase(GameObject gameBase)
+    {
+        this.gameBase = gameBase;
+    }
+
     public void Update() {
         updateHealthBar();
         regenHealth();
+        //move towards base if var is assigned, damage base if reached base
+        if (gameBase != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, gameBase.transform.position, speed * Time.deltaTime);
+        }
+        else
+        {
+            print("base is not set");
+
+        }
     }
 }

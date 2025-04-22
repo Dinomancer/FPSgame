@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8882543144334295272, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
       propertyPath: <PrefabId>k__BackingField
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8882543144334295272, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
       propertyPath: <AssetPathHash>k__BackingField

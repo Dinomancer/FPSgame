@@ -13,8 +13,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8882543144334295272, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
+      propertyPath: <PrefabId>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8882543144334295272, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
       propertyPath: <AssetPathHash>k__BackingField
       value: 5251378538083821402
+      objectReference: {fileID: 0}
+    - target: {fileID: -8882543144334295272, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
+      propertyPath: SerializedTransformProperties.Position.x
+      value: 7.19
+      objectReference: {fileID: 0}
+    - target: {fileID: -8882543144334295272, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
+      propertyPath: SerializedTransformProperties.Position.z
+      value: 10.51
       objectReference: {fileID: 0}
     - target: {fileID: -6172052565333157212, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
       propertyPath: color

@@ -13,12 +13,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8882543144334295272, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
+      propertyPath: <PrefabId>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8882543144334295272, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
       propertyPath: <AssetPathHash>k__BackingField
       value: 12984504875652270976
+      objectReference: {fileID: 0}
+    - target: {fileID: -8882543144334295272, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
+      propertyPath: SerializedTransformProperties.Position.x
+      value: -4.84
+      objectReference: {fileID: 0}
+    - target: {fileID: -8882543144334295272, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
+      propertyPath: SerializedTransformProperties.Position.z
+      value: 3.513
       objectReference: {fileID: 0}
     - target: {fileID: -6172052565333157212, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
       propertyPath: color
       value: red
+      objectReference: {fileID: 0}
+    - target: {fileID: -6172052565333157212, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6172052565333157212, guid: bfd5575d2ec89184e8d8f28483d57a44, type: 3}
       propertyPath: startingRedHealth
