@@ -8,7 +8,7 @@ using FishNet.Object.Synchronizing;
 public class PlayerManager : NetworkBehaviour
 {
     public readonly SyncVar<int> health = new SyncVar<int>(100);
-    public readonly SyncVar<int> damage = new SyncVar<int>(5);
+    public readonly SyncVar<int> damage = new SyncVar<int>(20);
 
 
     public static PlayerManager instance;
